@@ -58,7 +58,11 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
     }
 
     private fun onMenuAddClicked() {
-        supportFragmentManager.beginTransaction()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            fragmentTransaction.hide(supportFragmentManager.fragments.last()!!)
+        }
+        fragmentTransaction
             .add(
                 R.id.container,
                 DocumentFragment.newInstance(supportFragmentManager.backStackEntryCount + 1)

@@ -3,7 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".DocumentFragment" android:background="@android:color/background_light">
+             tools:context=".DocumentFragment">
 
     <TextView
             android:id="@+id/documentName"

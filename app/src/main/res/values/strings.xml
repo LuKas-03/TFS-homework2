@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Документы</string>
+    <string name="document_number">Документ №%d</string>
 </resources>

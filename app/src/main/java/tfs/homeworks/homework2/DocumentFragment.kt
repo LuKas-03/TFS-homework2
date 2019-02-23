@@ -13,7 +13,6 @@ class DocumentFragment : Fragment() {
 
     companion object {
 
-        @JvmStatic
         fun newInstance(documentNumber: Int): DocumentFragment {
             val args = Bundle()
             args.putInt(ARG_DOCUMENT_NUMBER, documentNumber)
@@ -32,17 +31,20 @@ class DocumentFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        number = arguments?.getInt(ARG_DOCUMENT_NUMBER) as Int
+        number = arguments!!.getInt(ARG_DOCUMENT_NUMBER)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_document, container, false)
-        val name = view.findViewById<TextView>(R.id.documentName)
-        name.text = "Документ №$number"
-        return view
+        return inflater.inflate(R.layout.fragment_document, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val name = view.findViewById<TextView>(R.id.documentName)
+        name.text = String.format(getString(R.string.document_number), number)
+    }
 }
